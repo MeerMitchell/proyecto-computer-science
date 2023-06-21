@@ -1,15 +1,7 @@
-function traerDatos(){
-    fetch('https://hp-api.onrender.com/api/characters')
-    .then(response => response.json())
-    .then(json => {
-        return json 
-   // printHogwarts(json);
 
-    });
-}
 
-const json = traerDatos();
-console.log(json);
+
+
 
 
 
@@ -40,14 +32,40 @@ function buscarElemento(){
     const resultadosElemento = document.getElementById('resultados');
 
     resultadosElemento.innerHTML = "";
+    fetch('https://hp-api.onrender.com/api/characters')
+        .then(response => response.json())
+        .then(json => {
+            const resultados = json.filter(item => item.name.toLowerCase().includes(valor));
+            resultados.forEach(item => {
+                const nombreCharacter = document.createElement("li");
+                nombreCharacter.setAttribute("class", "nombreCharacter");
+                nombreCharacter.textContent = item.name;
+                resultadosElemento.appendChild(nombreCharacter);
 
-    const resultados = json.filter(item => item.name.toLowerCase().includes(valor));
+                const casaCharacter = document.createElement("li");
+                casaCharacter.setAttribute("class", "casaCharacter");
+                casaCharacter.textContent = item.house;
+                resultadosElemento.appendChild(casaCharacter);
 
-    resultados.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item.name;
-        resultadosElemento.appendChild(li);
-    })
+                const varitaCharacter = document.createElement("li");
+                varitaCharacter.setAttribute("class", "varitaCharacter");
+                varitaCharacter.textContent = `${item.wand.wood}, ${item.wand.core}`;
+                resultadosElemento.appendChild(varitaCharacter);
+
+                const photoCharacter = document.createElement("img");
+                if (item.image == ""){
+                    photoCharacter.setAttribute("src", "./assets/profl.png");
+                } else {
+                    photoCharacter.setAttribute("src", `${item.image}`);
+                }
+        
+                resultadosElemento.appendChild(photoCharacter);
+            })
+    });
+
+    
+
+   
 }
 
 
