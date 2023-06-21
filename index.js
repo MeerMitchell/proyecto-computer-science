@@ -1,21 +1,29 @@
-const getDataFromApi = async() => {
-    const response = await fetch('https://hp-api.onrender.com/api/characters');
-    const hogwarts = await response.json();
-    console.log('hogwarts: ', hogwarts);
-
-/*
-
-   for (iterador of hogwarts) {
-        console.log('hogwarts: ', iterador.name, iterador.wand, iterador.house, iterador.image);
-   
-        const imgContainer = document.querySelector('#container-images');
-        console.log(imgContainer)
-        const imgElement = document.createElement('img');
-        imgElement.setAttribute('src', hogwarts.image);
-        imgContainer.appendChild(imgElement);
-    } 
 
 
-};
+fetch('https://hp-api.onrender.com/api/characters')
+        .then(response => response.json())
+        .then(json => {
+            printHogwarts(json.results);
+           
+        });
 
-getDataFromApi();  
+
+function printHogwarts(character) {
+    const container = document.getElementById('container')
+    character.forEach(character => {
+        container.innerHTML = `
+        ${container.innerHTML}
+        <div class="card">
+        <img src="https://ik.imagekit.io/hpapi/${getCharacterId(character.url)}.jpg"/>
+        <span>Nº.${getCharacterId(getCharacterId.url)}</span>
+        <h2>${character.name.charAt(0).toUpperCase() + character.name.slice(1)}</h2>
+        </card>
+        
+`;
+});
+}   
+
+function getCharacterId(url) {
+    return url.replace('https://hp-api.onrender.com/api/characters/', '').replace('/','')
+}
+
