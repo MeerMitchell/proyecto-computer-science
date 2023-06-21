@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 function printHogwarts(character) {
     const container = document.getElementById('container')
     character.forEach(character => {
@@ -64,8 +59,6 @@ function buscarElemento(){
     });
 
     
-
-   
 }
 
 
