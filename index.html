@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Hogwarts directory</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
             <div class="container">
                 <form action="">
                     <label for="character">Búsqueda de personaje</label>
-                    <input type="text" id="characterSearch" >
+                    <input type="text" id="characterSearch" oninput="buscarElemento()" >
         
                 </form>
                 <div class="button">
@@ -26,7 +27,13 @@
                  <div id="container-images"></div>
         </main>
 
-        
+       <section id="container">
+
+       </section>
+
+       <section id="resultados">
+
+       </section>
       </div>
     
 
