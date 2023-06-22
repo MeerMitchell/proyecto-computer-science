@@ -1,5 +1,10 @@
 
-
+nav li {
+    display: inline-block;
+    margin: auto;
+    align-content: center;
+  
+}
 
 li {
     list-style: none;
