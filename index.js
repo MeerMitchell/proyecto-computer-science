@@ -9,14 +9,16 @@ function printHogwarts(character) {
         nameCharacter.textContent = `${character.name}`;
         container.appendChild(nameCharacter);
 
-        const photoCharacter = document.createElement("img");
+        const photoCharacter = document.createElement("img"); 
         if (character.image == ""){
             photoCharacter.setAttribute("src", "./assets/profl.png");
         } else {
             photoCharacter.setAttribute("src", `${character.image}`);
-        }
 
+        }
         container.appendChild(photoCharacter);
+
+        
 
     });
 }
@@ -24,14 +26,18 @@ function printHogwarts(character) {
 function buscarElemento(){
     const input = document.getElementById('characterSearch');
     const valor = input.value.toLowerCase();
-    const resultadosElemento = document.getElementById('resultados');
+    const resultadosDiv = document.getElementById('resultados');
 
-    resultadosElemento.innerHTML = "";
+    resultadosDiv.innerHTML = "";
     fetch('https://hp-api.onrender.com/api/characters')
         .then(response => response.json())
         .then(json => {
             const resultados = json.filter(item => item.name.toLowerCase().includes(valor));
+            
             resultados.forEach(item => {
+                const resultadosElemento = document.createElement("div");
+                resultadosElemento.setAttribute("class", "resultadosElemento");
+
                 const nombreCharacter = document.createElement("li");
                 nombreCharacter.setAttribute("class", "nombreCharacter");
                 nombreCharacter.textContent = item.name;
@@ -53,8 +59,11 @@ function buscarElemento(){
                 } else {
                     photoCharacter.setAttribute("src", `${item.image}`);
                 }
+                photoCharacter.style.height = "300px";
+               
         
                 resultadosElemento.appendChild(photoCharacter);
+                resultadosDiv.appendChild(resultadosElemento);
             })
     });
 
